@@ -26,7 +26,7 @@ public class Address {
 	public Address() {}
 		 
 	  
-	  //constructor
+	 
 	public Address(long addressId, String address, String contactperson, String contactnumber, long user_id) {
 		super();
 		this.addressId = addressId;
