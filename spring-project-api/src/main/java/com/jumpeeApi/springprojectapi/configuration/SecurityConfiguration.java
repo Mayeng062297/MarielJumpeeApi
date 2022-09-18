@@ -50,34 +50,28 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				
 		http
 		.authorizeRequests()
-		 
+		
+		//REGISTERED USER
+		.antMatchers("/display-users").hasAnyRole("admin") 
+		.antMatchers("/display-users/{id}").hasAnyRole("admin") 
+		
 		//LOGIN
-		.antMatchers("/login").authenticated()					//login for user and admin
+		.antMatchers("/login").authenticated()					
 		
 		//MY ACCOUNT PAGE
-		.antMatchers("/account-details").authenticated()		//ok Display account details
-		.antMatchers(HttpMethod.DELETE, "/delete-user/{id}").authenticated() 	//delete account
-		.antMatchers(HttpMethod.PUT, "/edit-user-details/{id}").authenticated() 	//account modifying
+		.antMatchers("/account-details").authenticated()		
+		.antMatchers(HttpMethod.DELETE, "/delete-user/{id}").authenticated() 	
+		.antMatchers(HttpMethod.PUT, "/edit-user-details/{id}").authenticated() 	
 		
 		//OK ADMIN ACCESS FOR PRODUCT PAGE 
 		.antMatchers("/admin-access").hasAnyRole("admin") 
 		.antMatchers("/add-product").hasAnyRole("admin") 
 		.antMatchers("/update-product/{id}").hasAnyRole("admin") 
 		.antMatchers("/delete-product/{id}").hasAnyRole("admin") 
-		
-		
-		// .antMatchers("/secured-admin").hasAnyRole("admin") 	// ok testing endpoint for admin authentication
-		.antMatchers(HttpMethod.PUT, "/edit-address/{id}").authenticated() //authentication for putmapping edit address
-		
+			
 		.and()
-		.authorizeRequests().anyRequest().permitAll();		//authorized request to be permitted
+		.authorizeRequests().anyRequest().permitAll();		//any specified endpoint authorized request to be permitted
 
-		//After sending a request for /secured endpoint the console will generate a password
-		// in console: Using generated security password: 9289c452-f0aa-496d-ab79-c40f0d15ee17
-
-		//in postman select Basic Auth with username: user and passsword: 9289c452-f0aa-496d-ab79-c40f0d15ee17, then send a request
-		// response will be - This is secured	
-		
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);	//configure http with session management session creation policy with status
 
 	}
@@ -90,9 +84,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	}
 
 	@Bean
-	PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
+	PasswordEncoder passwordEncoder() {		//returning password encoder and this is the method name
+		return new BCryptPasswordEncoder();	
 	}
 	
 }
 
+
+//.antMatchers("/secured-admin").hasAnyRole("admin") 	// ok testing endpoint for admin authentication
+//.antMatchers(HttpMethod.PUT, "/edit-address/{id}").authenticated() //authentication for putmapping edit address

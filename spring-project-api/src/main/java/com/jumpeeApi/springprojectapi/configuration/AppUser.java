@@ -22,7 +22,7 @@ public class AppUser implements UserDetails {
 		this.users = users;
 	}
 
-	@Override
+	@Override		//defining if what role will be authorized
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return AuthorityUtils.createAuthorityList("ROLE_" + this.users.getRole());
 	}

@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.jumpeeApi.springprojectapi.jsonview.View;
+
 @Entity
 @Table(name = "products")
 public class Product {
@@ -15,23 +18,23 @@ public class Product {
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		@Column(name="product_id")
 		private long productId;
+		
+		@JsonView(View.Base.class)
 		private String productName;
-		private String stock;
+		
+		@JsonView(View.Base.class)
+		private String category;
+		
+		@JsonView(View.Base.class)
+		private String brand;
+		
+		@JsonView(View.Base.class)
 		private int price;
 		
-		/*	//NOT NEED
-		//Constructor
-		public Product() {}
+		@JsonView(View.Base.class)
+		private String quantity;
 
-		public Product(long productId, String productName, String stock, int price) {
-			super();
-			this.productId = productId;
-			this.productName = productName;
-			this.stock = stock;
-			this.price = price;
-		}
-		*/
-
+		
 		//GETTERS AND SETTERS
 		public long getProductId() {
 			return productId;
@@ -49,12 +52,20 @@ public class Product {
 			this.productName = productName;
 		}
 
-		public String getStock() {
-			return stock;
+		public String getCategory() {
+			return category;
 		}
 
-		public void setStock(String stock) {
-			this.stock = stock;
+		public void setCategory(String category) {
+			this.category = category;
+		}
+
+		public String getBrand() {
+			return brand;
+		}
+
+		public void setBrand(String brand) {
+			this.brand = brand;
 		}
 
 		public int getPrice() {
@@ -63,5 +74,14 @@ public class Product {
 
 		public void setPrice(int price) {
 			this.price = price;
-		}			 		
+		}
+
+		public String getQuantity() {
+			return quantity;
+		}
+
+		public void setQuantity(String quantity) {
+			this.quantity = quantity;
+		}
+				 		
 }

@@ -21,33 +21,14 @@ import com.jumpeeApi.springprojectapi.configuration.LoggedInUser;
 import com.jumpeeApi.springprojectapi.jsonview.View;
 
 
-// @SpringBootApplication(exclude = SecurityAutoConfiguration.class)	//excluding spring security in this app
+// @SpringBootApplication(exclude = SecurityAutoConfiguration.class)	//excluding spring security in this application
 @SpringBootApplication			//
 public class SpringProjectApiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringProjectApiApplication.class, args);		
 	}
-
 	
-	@Bean
-	CommandLineRunner run(ProductRepository productRepository) {
-	return new CommandLineRunner() {
-
-		@Override
-		public void run(String... args) throws Exception {
-		IntStream.rangeClosed(1,50).forEach(i -> {
-		Product product = new Product();
-		product.setProductName("Product" + i);
-		product.setStock("Stock" + i);
-		product.setPrice(i);
-		productRepository.save(product);
-		});
-	}
-	};
-}
-
-
 }
 
 
@@ -58,6 +39,114 @@ public class SpringProjectApiApplication {
 
 
 
+
+
+
+
+
+//AUTOMATIC INSERTING VALUES FOR PRODUCT TABLE
+
+/*
+@Bean
+CommandLineRunner run(ProductRepository productRepository) {
+return new CommandLineRunner() {
+
+	@Override
+	public void run(String... args) throws Exception {
+	IntStream.rangeClosed(1,10).forEach(i -> {
+	Product product = new Product();
+	//product.setProductName("Product" + i);
+	product.setProductName("Shoulder Bag" + i);
+	product.setCategory("Women's Bag");
+	product.setBrand("Fendi");
+	product.setPrice(1000);
+	product.setQuantity("100");
+	//product.setPrice(i);
+	productRepository.save(product);
+	});
+}
+};
+}
+*/
+/*
+@Bean
+CommandLineRunner run(ProductRepository productRepository) {
+return new CommandLineRunner() {
+
+	@Override
+	public void run(String... args) throws Exception {
+	IntStream.rangeClosed(1,10).forEach(i -> {
+	Product product = new Product();
+	//product.setProductName("Product" + i);
+	product.setProductName("Bag");
+	product.setCategory("Women's Bag");
+	product.setBrand("Channel");
+	product.setPrice(2000);
+	product.setQuantity("50");
+	//product.setPrice(i);
+	productRepository.save(product);
+	});
+}
+};
+}
+*/
+
+/*
+@Bean
+CommandLineRunner run(ProductRepository productRepository) {
+return new CommandLineRunner() {
+
+	@Override
+	public void run(String... args) throws Exception {
+	IntStream.rangeClosed(1,10).forEach(i -> {
+	Product product = new Product();
+	//product.setProductName("Product" + i);
+	product.setProductName("Tshirt");
+	product.setCategory("Clothes");
+	product.setBrand("Penshopee");
+	product.setPrice(150);
+	product.setQuantity("20");
+	//product.setPrice(i);
+	productRepository.save(product);
+	});
+}
+};
+}
+*/
+
+/*
+@Bean
+CommandLineRunner run(ProductRepository productRepository) {
+return new CommandLineRunner() {
+
+	@Override
+	public void run(String... args) throws Exception {
+	IntStream.rangeClosed(1,20).forEach(i -> {
+	Product product = new Product();
+	//product.setProductName("Product" + i);
+	product.setProductName("Rubber Shoes" + i);
+	product.setCategory("Shoes");
+	product.setBrand("Nike");
+	product.setPrice(1500);
+	product.setQuantity("10");
+	//product.setPrice(i);
+	productRepository.save(product);
+	});
+}
+};
+}
+*/
+
+
+
+
+
+
+
+
+
+
+//TESTING SPRING SECURITY ENDPOINTS FOR USER AND ADMIN ROLE BASED
 //@RestController
 
 	/*	ok Testing for authorized users and admin registered on app 

@@ -19,14 +19,14 @@ public class UserService {
 	@Autowired
 	UserRepository repository;		//repository class
 	
-	PasswordEncoder passwordEncoder;	//password encryption object
+	PasswordEncoder passwordEncoder;	
 	
 	public UserService(UserRepository repository, PasswordEncoder passwordEncoder) {	//PASSWORD ENCRYPTION
 		this.repository = repository;
-		this.passwordEncoder = passwordEncoder;
+		this.passwordEncoder = passwordEncoder; 	
 		}
 			
-	public List<User> getUsers() {		//GET
+	public List<User> getUsers() {		//GET 
 		return repository.findAll();
 	}
 	

@@ -9,12 +9,13 @@ import javax.validation.Payload;
 
 import java.lang.annotation.RetentionPolicy;
 
-@Target({ ElementType.FIELD})
+//Class for Custom Validation for Unique email
+@Target({ ElementType.FIELD})	//to be targeted on specific field only cannot be used anywhere
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = UniqueEmailValidator.class)
+@Constraint(validatedBy = UniqueEmailValidator.class)		//validated by another class UniqueEmailValidator
 public @interface UniqueEmail {
 
-	String message() default "This email is already exist";
+	String message() default "This email is already exist";	//whenever email is exist, this message will show
 	Class<?>[] groups() default { };
 	Class<? extends Payload> [] payload() default{ };
 }

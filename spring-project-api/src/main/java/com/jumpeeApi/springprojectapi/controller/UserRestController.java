@@ -27,14 +27,17 @@ public class UserRestController {
 
 	@Autowired		//it allows spring to resolve and inject collaborating beans into our bean
 	UserService userService;	//service class
-		
+	
+	
 	@GetMapping("/display-users")	//GET METHOD DISPLAY ALL USERS
+	@PreAuthorize("hasRole('ROLE_admin')")
 	@JsonView(View.Base.class)  //fields with this annotation will only be visible in response view
 	List<User> getUsers() {
 		return userService.getUsers();
 	}
 		
 	@GetMapping("/display-users/{id}")	//GET METHOD DISPLAY USERS BY ID
+	@PreAuthorize("hasRole('ROLE_admin')")
 	@JsonView(View.Base.class) //fields with this annotation will only be visible in response view
 	public User getUser(@PathVariable long id) {
 		return this.userService.getUserById(id);

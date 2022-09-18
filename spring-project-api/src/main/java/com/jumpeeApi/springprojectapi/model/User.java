@@ -28,13 +28,12 @@ public class User {
 		@Column(name="user_id")
 		private long id;
 		
-
 		@NotBlank (message="Full name cannot be empty")
 		@NotNull(message="Full name cannot be null!")
-		@JsonView(View.Base.class)		//this field will only be visible on postman 
+		@JsonView(View.Base.class)		//this field will only visible on response json view 
 		private String fullname;
 		
-		//@Size(max = 13, message = "invalid mobile number entered ")
+		
 		@Pattern(regexp ="^(09|\\+639)\\d{9}$", message ="invalid contact number entered ")
 		@NotNull(message="Phone number cannot be null!")
 		@JsonView(View.Base.class)
@@ -44,7 +43,7 @@ public class User {
 		
 		@UniqueEmail
 		@NotNull(message="Email cannot be null!")
-		@Email(message="Please enter a valid email address!")	//Email validation format		
+		@Email(message="Please enter a valid email address!")		
 		@JsonView(View.Base.class)
 		private String email;
 		
@@ -52,9 +51,6 @@ public class User {
 		@JsonView(View.Base.class)
 		private String username;
 		
-	//	@Pattern(regexp = "^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.[!@#&()–[{}]:;',?/*~$^+=<>]).{8,16}$", message = "The password can contain alphanumeric characters only")
-	//	@Pattern(regexp = "^[a-zA-Z0-9]+$", message = "The password can contain alphanumeric characters only") //d pa nagana @Pattern
-	//	@Pattern(regexp =".[A-Z]..[0-9].*", message = "The password can contain alphanumeric characters only")
 	//	@Pattern(regexp = "^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$", message = "Must contain at least one (number, lowercase, uppercase, special character)." + " Must contain a length of at least 8 characters and a maximum of 20 characters.")
 		@NotNull(message="Password cannot be null!")
 		@Size(min = 8, message = "Password must be minimum of 8 characters")
@@ -71,7 +67,6 @@ public class User {
 
 				
 		//getters and setters
-		
 		public long getId() {
 			return id;
 		}
@@ -142,3 +137,12 @@ public class User {
 		}
 				
 }
+
+
+
+
+
+//NOT IMPLEMENTED ON PASSWORD MUST BE ALPHANUMERIC CHARACTERS
+//	@Pattern(regexp = "^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.[!@#&()–[{}]:;',?/*~$^+=<>]).{8,16}$", message = "The password can contain alphanumeric characters only")
+//	@Pattern(regexp = "^[a-zA-Z0-9]+$", message = "The password can contain alphanumeric characters only") //d pa nagana @Pattern
+//	@Pattern(regexp =".[A-Z]..[0-9].*", message = "The password can contain alphanumeric characters only")

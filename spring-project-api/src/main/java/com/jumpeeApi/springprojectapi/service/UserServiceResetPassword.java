@@ -29,7 +29,7 @@ public class UserServiceResetPassword {
 				this.passwordEncoder = passwordEncoder;
 			}
 				
-
+			//Validate user by email id.
 		public String forgotPassword(String email) {
 
 			Optional<User> userOptional = Optional
@@ -47,7 +47,7 @@ public class UserServiceResetPassword {
 
 			return user.getToken();
 		}
-
+		//Validate the token
 		public String resetPassword(String token, String password) {
 	
 			Optional<User> userOptional = Optional
@@ -64,7 +64,7 @@ public class UserServiceResetPassword {
 
 			}
 
-
+			//Update the new password
 			User user = userOptional.get();
 			
 			String encodedPassword = this.passwordEncoder.encode(user.getPassword());
@@ -78,6 +78,7 @@ public class UserServiceResetPassword {
 			return "Your password successfully updated.";
 		}
 
+		//Generate unique token
 		/**
 		 * Generate unique token. You may add multiple parameters to create a strong
 		 * token.

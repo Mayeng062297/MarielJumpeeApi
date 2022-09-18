@@ -13,7 +13,8 @@ public class UserForgotPasswordController {
 
 	@Autowired
 	UserServiceResetPassword userService;
-
+	
+	//Generate the password recovery URL
 	@PostMapping("/forgot-password")
 	public String forgotPassword(@RequestParam String email) {
 
